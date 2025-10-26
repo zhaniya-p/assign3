@@ -16,7 +16,7 @@ public class GenerateGraphs {
         generateGraphs("input/medium", 10, 30, 300);
         generateGraphs("input/large", 10, 300, 1000);
         generateGraphs("input/extra_large", 3, 1000, 2000);
-        System.out.println("✅ Graph datasets generated successfully!");
+        System.out.println("Graph datasets generated successfully!");
     }
 
     public static void generateGraphs(String folder, int count, int minV, int maxV) throws IOException {

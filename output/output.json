@@ -1,0 +1,205 @@
+[
+  {
+    "category": "small",
+    "file": "graph_1.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 1,
+    "mst_cost": 122.0
+  },
+  {
+    "category": "small",
+    "file": "graph_2.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 0,
+    "mst_cost": 316.0
+  },
+  {
+    "category": "small",
+    "file": "graph_3.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 0,
+    "mst_cost": 263.0
+  },
+  {
+    "category": "small",
+    "file": "graph_4.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 0,
+    "mst_cost": 201.0
+  },
+  {
+    "category": "small",
+    "file": "graph_5.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 0,
+    "mst_cost": 271.0
+  },
+  {
+    "category": "small",
+    "file": "small_graph.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 0,
+    "mst_cost": 10.5
+  },
+  {
+    "category": "medium",
+    "file": "graph_1.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 0,
+    "mst_cost": 662.0
+  },
+  {
+    "category": "medium",
+    "file": "graph_10.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 1,
+    "mst_cost": 3404.0
+  },
+  {
+    "category": "medium",
+    "file": "graph_2.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 1,
+    "mst_cost": 3881.0
+  },
+  {
+    "category": "medium",
+    "file": "graph_3.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 0,
+    "mst_cost": 4085.0
+  },
+  {
+    "category": "medium",
+    "file": "graph_4.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 1,
+    "mst_cost": 3285.0
+  },
+  {
+    "category": "medium",
+    "file": "graph_5.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 1,
+    "mst_cost": 2728.0
+  },
+  {
+    "category": "medium",
+    "file": "graph_6.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 1,
+    "mst_cost": 2116.0
+  },
+  {
+    "category": "medium",
+    "file": "graph_7.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 1,
+    "mst_cost": 2337.0
+  },
+  {
+    "category": "medium",
+    "file": "graph_8.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 0,
+    "mst_cost": 1749.0
+  },
+  {
+    "category": "medium",
+    "file": "graph_9.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 1,
+    "mst_cost": 3565.0
+  },
+  {
+    "category": "large",
+    "file": "graph_1.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 1,
+    "mst_cost": 7680.0
+  },
+  {
+    "category": "large",
+    "file": "graph_10.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 1,
+    "mst_cost": 10838.0
+  },
+  {
+    "category": "large",
+    "file": "graph_2.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 0,
+    "mst_cost": 8278.0
+  },
+  {
+    "category": "large",
+    "file": "graph_3.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 0,
+    "mst_cost": 4846.0
+  },
+  {
+    "category": "large",
+    "file": "graph_4.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 0,
+    "mst_cost": 9020.0
+  },
+  {
+    "category": "large",
+    "file": "graph_5.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 0,
+    "mst_cost": 8387.0
+  },
+  {
+    "category": "large",
+    "file": "graph_6.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 0,
+    "mst_cost": 9792.0
+  },
+  {
+    "category": "large",
+    "file": "graph_7.json",
+    "prim_time_ms": 0,
+    "kruskal_time_ms": 1,
+    "mst_cost": 4684.0
+  },
+  {
+    "category": "large",
+    "file": "graph_8.json",
+    "prim_time_ms": 2,
+    "kruskal_time_ms": 1,
+    "mst_cost": 11833.0
+  },
+  {
+    "category": "large",
+    "file": "graph_9.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 0,
+    "mst_cost": 6678.0
+  },
+  {
+    "category": "extra_large",
+    "file": "graph_1.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 1,
+    "mst_cost": 20030.0
+  },
+  {
+    "category": "extra_large",
+    "file": "graph_2.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 1,
+    "mst_cost": 18856.0
+  },
+  {
+    "category": "extra_large",
+    "file": "graph_3.json",
+    "prim_time_ms": 1,
+    "kruskal_time_ms": 1,
+    "mst_cost": 15066.0
+  }
+]
