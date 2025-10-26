@@ -1,72 +1,94 @@
 package mstproject.algorithms;
 
-import mstproject.graph.*;
-import java.util.*;
+import mstproject.graph.Edge;
+import mstproject.graph.Graph;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Kruskal {
-    static class UnionFind {
-        int[] parent, rank;
-        int ops = 0;
 
-        UnionFind(int n) {
+    public static class Result {
+        public final List<Edge> mstEdges;
+        public final double totalCost;
+        public final long operations; // count of union/find key calls
+        public final long timeMs;
+        public final boolean valid;
+
+        public Result(List<Edge> mstEdges, double totalCost, long operations, long timeMs, boolean valid) {
+            this.mstEdges = mstEdges;
+            this.totalCost = totalCost;
+            this.operations = operations;
+            this.timeMs = timeMs;
+            this.valid = valid;
+        }
+    }
+
+    private static class UnionFind {
+        private final int[] parent;
+        private final int[] rank;
+        private long ops = 0;
+
+        public UnionFind(int n) {
             parent = new int[n];
             rank = new int[n];
             for (int i = 0; i < n; i++) parent[i] = i;
         }
 
-        int find(int x) {
+        public int find(int x) {
             ops++;
-            if (parent[x] != x) parent[x] = find(parent[x]);
+            if (parent[x] != x) {
+                parent[x] = find(parent[x]);
+            }
             return parent[x];
         }
 
-        void union(int x, int y) {
+        public boolean union(int x, int y) {
             ops++;
-            int rootX = find(x), rootY = find(y);
-            if (rootX == rootY) return;
-
-            if (rank[rootX] < rank[rootY]) parent[rootX] = rootY;
-            else if (rank[rootX] > rank[rootY]) parent[rootY] = rootX;
+            int rx = find(x);
+            int ry = find(y);
+            if (rx == ry) return false;
+            if (rank[rx] < rank[ry]) parent[rx] = ry;
+            else if (rank[rx] > rank[ry]) parent[ry] = rx;
             else {
-                parent[rootY] = rootX;
-                rank[rootX]++;
+                parent[ry] = rx;
+                rank[rx]++;
             }
+            return true;
+        }
+
+        public long getOps() {
+            return ops;
         }
     }
 
     public static Result findMST(Graph graph) {
+        long start = System.currentTimeMillis();
+        int V = graph.getVerticesCount();
         List<Edge> edges = new ArrayList<>(graph.getEdges());
         Collections.sort(edges);
-        UnionFind uf = new UnionFind(graph.getVertices());
-
+        UnionFind uf = new UnionFind(V);
         List<Edge> mst = new ArrayList<>();
-        double totalCost = 0;
+        double total = 0.0;
 
         for (Edge e : edges) {
-            int srcRoot = uf.find(e.src);
-            int destRoot = uf.find(e.dest);
-
-            if (srcRoot != destRoot) {
-                uf.union(srcRoot, destRoot);
-                mst.add(e);
-                totalCost += e.weight;
+            if (mst.size() == Math.max(0, V - 1)) break;
+            int u = e.getSrc();
+            int v = e.getDest();
+            int ru = uf.find(u);
+            int rv = uf.find(v);
+            if (ru != rv) {
+                boolean merged = uf.union(ru, rv);
+                if (merged) {
+                    mst.add(e);
+                    total += e.getWeight();
+                }
             }
-
-            if (mst.size() == graph.getVertices() - 1) break;
         }
 
-        return new Result(mst, totalCost, uf.ops);
-    }
-
-    public static class Result {
-        public List<Edge> edges;
-        public double cost;
-        public int operations;
-
-        public Result(List<Edge> edges, double cost, int operations) {
-            this.edges = edges;
-            this.cost = cost;
-            this.operations = operations;
-        }
+        boolean valid = (mst.size() == Math.max(0, V - 1));
+        long timeMs = System.currentTimeMillis() - start;
+        return new Result(mst, total, uf.getOps(), timeMs, valid);
     }
 }

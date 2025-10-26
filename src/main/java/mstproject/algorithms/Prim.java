@@ -1,46 +1,66 @@
 package mstproject.algorithms;
 
-import mstproject.graph.*;
-import java.util.*;
+import mstproject.graph.Edge;
+import mstproject.graph.Graph;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
 
 public class Prim {
+
+    public static class Result {
+        public final List<Edge> mstEdges;
+        public final double totalCost;
+        public final long operations; // counted key operations (edge polls / vertex checks)
+        public final long timeMs;
+        public final boolean valid;
+
+        public Result(List<Edge> mstEdges, double totalCost, long operations, long timeMs, boolean valid) {
+            this.mstEdges = mstEdges;
+            this.totalCost = totalCost;
+            this.operations = operations;
+            this.timeMs = timeMs;
+            this.valid = valid;
+        }
+    }
+
     public static Result findMST(Graph graph) {
-        int V = graph.getVertices();
+        long start = System.currentTimeMillis();
+        int V = graph.getVerticesCount();
+        if (V == 0) {
+            return new Result(new ArrayList<>(), 0.0, 0, System.currentTimeMillis() - start, false);
+        }
+
         boolean[] visited = new boolean[V];
         PriorityQueue<Edge> pq = new PriorityQueue<>();
         List<Edge> mst = new ArrayList<>();
-        int operations = 0;
-        double totalCost = 0;
+        long ops = 0L;
+        double totalCost = 0.0;
 
+        // Start from vertex 0
         visited[0] = true;
-        pq.addAll(graph.getAdjList().get(0));
+        for (Edge e : graph.getAdjList().get(0)) pq.add(e);
 
         while (!pq.isEmpty() && mst.size() < V - 1) {
-            Edge edge = pq.poll();
-            operations++;
-            if (visited[edge.dest]) continue;
-
-            mst.add(edge);
-            totalCost += edge.weight;
-            visited[edge.dest] = true;
-
-            for (Edge next : graph.getAdjList().get(edge.dest)) {
-                if (!visited[next.dest]) pq.add(next);
+            Edge e = pq.poll();
+            ops++; // one key operation: poll / consider an edge
+            int to = e.getDest();
+            if (visited[to]) continue;
+            // accept edge
+            mst.add(e);
+            totalCost += e.getWeight();
+            visited[to] = true;
+            // add edges from new vertex
+            for (Edge next : graph.getAdjList().get(to)) {
+                if (!visited[next.getDest()]) {
+                    pq.add(next);
+                }
             }
         }
 
-        return new Result(mst, totalCost, operations);
-    }
-
-    public static class Result {
-        public List<Edge> edges;
-        public double cost;
-        public int operations;
-
-        public Result(List<Edge> edges, double cost, int operations) {
-            this.edges = edges;
-            this.cost = cost;
-            this.operations = operations;
-        }
+        boolean valid = (mst.size() == Math.max(0, V - 1));
+        long timeMs = System.currentTimeMillis() - start;
+        return new Result(mst, totalCost, ops, timeMs, valid);
     }
 }
